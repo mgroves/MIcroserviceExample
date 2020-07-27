@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Net;
 using System.Threading.Tasks;
 using Couchbase.Extensions.DependencyInjection;
 using Couchbase.Query;
@@ -13,6 +14,13 @@ namespace MicroserviceExample.Controllers
         public EventController(IBucketProvider bucketProvider)
         {
             _bucketProvider = bucketProvider;
+        }
+
+        [HttpGet]
+        [Route("/hostname")]
+        public IActionResult GetHostName()
+        {
+            return Ok(Dns.GetHostName());
         }
 
         [HttpPost]
