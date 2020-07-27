@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: useractivityservice
+spec:
+  selector:
+    matchLabels:
+      app: useractivityservice
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: useractivityservice
+    spec:
+      containers:
+      - image: "mattgroves/microserviceexample:v2"
+        resources:
+          limits:
+            memory: 128Mi
+            cpu: 500m
+        imagePullPolicy: Always
+        name: useractivityservice
+        ports:
+          - containerPort: 80
+        env:
+        - name: Couchbase__ConnectionString
+          value: "couchbase://cb-example"
+        - name: Couchbase__Username
+          value: Administrator
+        - name: Couchbase__Password
+          value: password
