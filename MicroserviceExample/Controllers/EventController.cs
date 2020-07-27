@@ -16,7 +16,7 @@ namespace MicroserviceExample.Controllers
         }
 
         [HttpPost]
-        [Route("/event/add{userId}")]
+        [Route("/event/add/{userId}")]
         public async Task<IActionResult> AddEventToUser(string userId, UserEventPost evt)
         {
             var bucket = await _bucketProvider.GetBucketAsync("useractivity");
