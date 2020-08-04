@@ -3,6 +3,7 @@ using System.Net;
 using System.Threading.Tasks;
 using Couchbase.Extensions.DependencyInjection;
 using Couchbase.Query;
+using MicroserviceExample.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace MicroserviceExample.Controllers
@@ -57,18 +58,5 @@ namespace MicroserviceExample.Controllers
                 QueryOptions.Create().Parameter("$userId", userId));
             return Ok(events.Rows);
         }
-    }
-
-    public class UserEventPost
-    {
-        public string Description { get; set; }
-        public string EventType { get; set; }
-    }
-
-    public class UserEventGet
-    {
-        public string Description { get; set; }
-        public string EventType { get; set; }
-        public DateTime EventDt { get; set; }
     }
 }
